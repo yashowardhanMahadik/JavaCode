@@ -1,0 +1,29 @@
+Stack/Queue impl
+
+   Stack<Integer> A = new Stack<Integer>(); 
+     A.push(new Integer(newElement)); // Pushes a new element. O(1)
+     A.pop();A.empty();A.peek();A.size();A.isEmpty()
+
+Queue implementation
+    Queue A = new LinkedList(); 
+      A.add(new Integer(newElement)); // Pushes a new element. O(1)
+        A.poll(); // O(1) pop
+        A.isEmpty();A.size();A.peek()
+
+Reverse 
+public class Solution {
+    public String reverseString(String A) {
+        Stack<Character> st = new Stack();
+        for(int i=0;i<A.length();i++)
+        {
+            st.push(A.charAt(i));
+        }
+        String b = "";
+        while(!st.isEmpty())
+        {
+            char c = st.pop();
+            b = b+c;
+        }
+        return b;
+    }
+}
