@@ -22,3 +22,5 @@ int number = Integer.parseInt(str);// String to integer
 
 boolean numeric = true;
 numeric = string.matches("-?\\d+(\\.\\d+)?"); //check if string is num or not
+
+//integer to int 
