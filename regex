@@ -1,5 +1,4 @@
 /* package codechef; // don't place package name! */
-problem: https://www.codechef.com/LTIME97C/problems/HTMLTAGS
 import java.util.*;
 import java.lang.*;
 import java.io.*;
