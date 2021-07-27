@@ -1,0 +1,42 @@
+https://practice.geeksforgeeks.org/problems/word-break/0
+class Sol
+{
+    public static int wordBreak(String A, ArrayList<String> B )
+    {
+        //code here
+        //System.out.println("str2");
+        return wordbr(A,B) ? 1 : 0 ;
+    }
+    public static boolean wordbr(String str, ArrayList<String> words){
+        
+        boolean val = false;
+        if(str.isEmpty()){
+            //System.out.println("asdja");
+            return true;
+        }
+        for(String str2 : words){
+            //System.out.println(str2+"<_>");
+            if(str2.length()>str.length()){
+                //System.out.println("stasfasfdasfdr2  :"+str2.length()+str.length());
+                continue;
+            }
+            for(int i=0;i<str2.length();i++){
+                val = true;
+                if(str2.charAt(i)!=str.charAt(i)){
+                    //System.out.println("stasfasfdasfdr2  :"+str2.charAt(i)+str.charAt(i));
+                    val= false;
+                    break;
+                }
+            }
+            if(!val){
+                continue;
+            }
+            //System.out.println(str2);
+            val = wordbr(str.substring(str2.length()),words);
+            if(val){
+                return val;
+            }
+        }
+        return val;
+    }
+}
