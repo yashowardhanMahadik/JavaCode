@@ -1,0 +1,60 @@
+//https://practice.geeksforgeeks.org/problems/brothers-from-different-root/1#
+/*Structure of the Node of the BST is as
+class Node
+{
+	int data;
+	Node left, right;
+
+	Node(int val) {
+		data = val;
+		left = right = null;
+	}
+}
+*/
+
+class Solution
+{
+    static ArrayList<Integer> alist,blist;
+	public static int countPairs(Node root1, Node root2, int x)
+	{
+		// Code here
+		int count=0;
+		alist = new ArrayList<>();
+		toList(root1,alist);
+		blist = new ArrayList<>();
+		toList(root2,blist);
+		
+		for(int i : alist){
+		    boolean ans = searchIt(x-i,0,blist.size()-1);
+		    if(ans){
+		        count++;
+		    }
+		}
+		return count;
+		
+	}
+	public static boolean searchIt(int x,int low,int high){
+	    if(low>high){
+	        return false ;
+	    }
+	    int mid = (low + high) /2;
+	    int midval = blist.get(mid);
+	    if(midval==x){
+	        return true;
+	    }
+	    //return (searchIt(x,low,mid-1) || searchIt(x,mid+1,high));
+	    if(midval>x){
+	        return searchIt(x,low,mid-1) ;
+	    }
+	    else{
+	        return searchIt(x,mid+1,high);
+	    }
+	}
+	public static void toList(Node node, ArrayList<Integer> lst){
+	    if(node!=null){
+	        toList(node.left,lst);
+	        lst.add(node.data);
+	        toList(node.right,lst);
+	    }
+	}
+}
