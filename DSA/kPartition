@@ -1,0 +1,60 @@
+class Solution
+{
+    public int sum;
+    public boolean globl = false;
+    public boolean isKPartitionPossible(int a[], int n, int k)
+    {
+	// Your code here	
+	ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
+	for(int i=0;i<k;i++){
+	    ans.add(new ArrayList<Integer>());
+	}
+	sum =0;
+	for(int i=0;i<n;i++){
+	    sum+=a[i];
+	}
+	boolean result = partitions(ans,0,a,0,n,k);
+	return globl;
+    }
+    
+    boolean partitions(	ArrayList<ArrayList<Integer>> ans, int i,int a[], int ssf,int n,int k ){
+        if(i>=n){
+            if(ssf==k){
+                //System.out.println("success"+ans);
+                int ss = sum/k;
+                int temp;
+                for(int j=0;j<k;j++){
+                    temp=0;
+                    for(int ii=0;ii<ans.get(j).size();ii++){
+                        temp+=ans.get(j).get(ii);
+                    }
+                    if(temp!=ss){
+                        return false;
+                    }
+                    
+                }
+                //System.out.println("        cool"+ans);
+                globl = true;
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        boolean first = true;
+        for(int j=0;j<k;j++){
+            if(ans.get(j).size()>0){
+                ans.get(j).add(a[i]);
+                first = partitions(ans,i+1,a,ssf,n,k);
+                ans.get(j).remove(ans.get(j).size()-1);
+            }
+            else{
+                ans.get(j).add(a[i]);
+                first = partitions(ans,i+1,a,ssf+1,n,k);
+                ans.get(j).remove(ans.get(j).size()-1);
+                break;
+            }
+        }
+        return first;
+    }
+}
